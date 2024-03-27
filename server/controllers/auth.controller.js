@@ -3,11 +3,6 @@ import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import generateTokenandSetCookie from "../utils/generateToken.utils.js";
 
-export const login = async (req, res) => {
-  try {
-  } catch (error) {}
-};
-
 export const signup = async (req, res) => {
   try {
     const { fullName, username, email, password, gender } = req.body;
@@ -54,6 +49,41 @@ export const signup = async (req, res) => {
   }
 };
 
-export const logout = (req, res) => {
-  res.send("Login");
+export const login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    //username can be username or email
+
+    const user = await User.findOne({
+      $or: [{ username }, { email: username }]
+    });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: `User ${username} does not exist` });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    //generate JWT token
+    generateTokenandSetCookie(user._id, res);
+
+    res.status(200).json({ message: "User logged in successfully", user });
+  } catch (error) {
+    console.log("Error in Login Controller: ", error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    console.log("Error in Logout Controller: ", error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
 };

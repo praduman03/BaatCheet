@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
-import authRoutes from "./routes/auth.routers.js";
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
 import ConnectToMongoDB from "./db/connectToMongoDB.js";
 
 dotenv.config();
@@ -24,3 +25,4 @@ app.use(bodyParser.json());
 
 // Routes Middleware
 app.use("/api/auth", authRoutes);
+app.use("/api/message", messageRoutes);
