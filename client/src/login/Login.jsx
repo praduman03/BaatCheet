@@ -1,7 +1,8 @@
 import "./Login.css";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+
 const Login = () => {
-  console.log("login");
   return (
     <>
       <img src={logo} className="logo" alt="" />
@@ -11,7 +12,12 @@ const Login = () => {
           <input type="text" placeholder="username or email" />
           <input type="password" placeholder="password" />
           <button>Login</button>
-          <p>{"Don't"} have an account? Sign Up</p>
+          <p>
+            {"Don't"} have an account? &nbsp;
+            <Link className="link" to={"/signup"}>
+              Sign Up
+            </Link>
+          </p>
         </div>
       </div>
     </>
