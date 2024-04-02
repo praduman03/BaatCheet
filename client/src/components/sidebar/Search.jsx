@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <div className="search">
       <input type="text" />
-      <button className="">
+      <button className="pr-6">
         <FaSearch color="#724ff9" size={20} />
       </button>
     </div>

@@ -7,7 +7,9 @@ const Sidebar = () => {
     <div className="sidebar">
       <Search />
       <Conversations />
-      <button className="logout">Logout</button>
+      <div className="pt-4">
+        <button className="logout">Logout</button>
+      </div>
     </div>
   );
 };

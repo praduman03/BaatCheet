@@ -1,9 +1,17 @@
-import React from "react";
 import Conversation from "./Conversation";
 
 const Conversations = () => {
   return (
-    <div className="w-full">
+    <div className="w-full overflow-auto">
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
       <Conversation />
       <Conversation />
       <Conversation />
