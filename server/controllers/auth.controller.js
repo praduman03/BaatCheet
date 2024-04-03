@@ -7,12 +7,17 @@ export const signup = async (req, res) => {
   try {
     const { fullName, username, email, password, gender } = req.body;
 
-    const user = await User.findOne({ username });
-    //TODO add same for the email also but in the optimized way
-    // *Important
-    if (user) {
+    const [existingUser, isEmailTaken] = await Promise.all([
+      User.findOne({ username }),
+      User.findOne({ email }),
+    ]);
+    
+    if (existingUser) {
       return res.status(400).json({ message: "Username is already taken" });
+    } else if (isEmailTaken) {
+      return res.status(400).json({ message: "Email address is already in use" });
     }
+    
 
     //Hash Password here
     const salt = await bcrypt.genSalt(10);
