@@ -2,8 +2,7 @@ import {useState} from 'react';
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import useSignup from '../hooks/useSignup';
-import { Toaster, toast } from 'react-hot-toast';
-// import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
   const [input, setInput] = useState({
