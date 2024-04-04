@@ -11,6 +11,7 @@ export const getMessage = async (req, res) => {
     }).populate("messages");
     if (!conversation) {
       res.status(200).json([]);
+      return;
     }
     res.status(200).json(conversation.messages);
   } catch (error) {
@@ -50,7 +51,7 @@ export const sendMessage = async (req, res) => {
     //* these two task will run in parallel using Promise.all
     await Promise.all([conversation.save(), newMessage.save()]);
 
-    res.status(201).json({ message: "Message sent successfully", newMessage });
+    res.status(201).json({ newMessage });
   } catch (error) {
     console.log("Error in sendMessage Controller: ", error);
     res.status(500).json({ message: "Something went wrong" });
