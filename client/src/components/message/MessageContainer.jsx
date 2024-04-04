@@ -1,23 +1,45 @@
+import { useEffect, useState } from "react";
+import useConversation from "../../zustand/useConversation";
 import "./message.css";
 import Messages from "./Messages";
 import { IoSend } from "react-icons/io5";
+import useSendMessage from "../../hooks/useSendMessage";
 
 const MessageContainer = () => {
+  const {selectedConversation, setSelectedConversation} = useConversation();
+  const [message, setMessage] = useState("");
+  const {loading, sendMessage} = useSendMessage();
+  useEffect(() => {
+  return() => {
+    setSelectedConversation(null)
+  }
+}, [setSelectedConversation])
+
+
+  if (!selectedConversation) {
+    return <div className="message-container">hello</div>;
+  }
+  const handleSubmit = async() => {
+    if(!message) return;
+    await sendMessage(message)
+    setMessage("");
+  }
+
   return (
     <div className="message-container">
       <div className="flex items-center">
         <img
           className="avatar"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5nvlmwygLKlmp7aC6rEIPSgNEcTLbi1TV5P1gVU-LSwImRRp9CzMZywB1PPC9JjeFWNU"
+          src={ selectedConversation.profileImage || null}
           alt=""
         />
-        <h2> Sam Edwards</h2>
+        <h2> {selectedConversation.fullName}</h2>
       </div>
       <hr />
       <Messages />
       <div className="message-input-div">
-        <input className="message-input" type="text" />
-        <button className="message-input-send">
+        <input className="message-input" type="text"  value={message} onChange={(e)=> setMessage(e.target.value)}/>
+        <button onClick={handleSubmit} className="message-input-send">
           <IoSend size={30} color="#724ff9" />
         </button>
       </div>

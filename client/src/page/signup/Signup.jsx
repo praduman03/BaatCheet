@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-import useSignup from '../hooks/useSignup';
+import useSignup from '../../hooks/useSignup';
 import { Toaster } from 'react-hot-toast';
 
 const Signup = () => {

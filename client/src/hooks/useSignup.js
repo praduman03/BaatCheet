@@ -1,9 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
 
 
 const useSignup = () => {
     const [loading, setLoading] = useState(false)
+    const {setAuthUser} = useAuthContext();
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
     const signupApi = async ({fullName, username, email, password, gender}) => {
@@ -26,10 +28,11 @@ const useSignup = () => {
             const data = await res.json();
             if(res.ok === false){
                 toast.error(await data.message)
-
+                return;
             }
             toast.success(data.message);
             localStorage.setItem("baatcheet", JSON.stringify(data))
+            setAuthUser(data)
         } catch (error) {
             toast.error(error);
         }

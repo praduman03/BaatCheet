@@ -1,16 +1,24 @@
+/* eslint-disable react/prop-types */
+import useConversation from "../../zustand/useConversation";
 import "./sidebar.css";
-const Conversation = () => {
+// import PropTypes from "prop-types";
+
+
+const Conversation = ({conversation, emoji}) => {
+  const {selectedConversation, setSelectedConversation} = useConversation();
+
+  const isSelected = selectedConversation?._id === conversation._id;
   return (
-    <div className="flex justify-between items-center w-11/12">
+    <div onClick={() => setSelectedConversation(conversation)} className={`flex justify-between items-center w-11/12 ${isSelected? "bg-sky-500": ""}`}>
       <div className="flex items-center">
         <img
           className="avatar"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5nvlmwygLKlmp7aC6rEIPSgNEcTLbi1TV5P1gVU-LSwImRRp9CzMZywB1PPC9JjeFWNU"
+          src={conversation.profileImage || null}
           alt=""
         />
-        <h2> Sam Edwards</h2>
+        <h2> {conversation.fullName || null}</h2>
       </div>
-      <span>🎅</span>
+      <span>{emoji}</span>
     </div>
   );
 };
