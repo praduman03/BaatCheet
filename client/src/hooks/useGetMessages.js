@@ -5,7 +5,6 @@ import useConversation from "../zustand/useConversation"
 const useGetMessages = () => {
     const [loading, setLoading] = useState(false)
     const {messages, setMessages, selectedConversation} = useConversation()
-    console.log("selectedConversation",selectedConversation)
 
     useEffect(() => {
         const getMessages = async () => {
@@ -19,7 +18,6 @@ const useGetMessages = () => {
                     toast.error(data.message);
                 }
                 setMessages(data);
-                console.log("testing",data)
             } catch (error) {
                 toast.error(error.message);
             } finally {

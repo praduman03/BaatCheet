@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import useConversation from "../../zustand/useConversation";
+import { useAuthContext } from "../../context/AuthContext";
 import "./message.css";
 import Messages from "./Messages";
 import { IoSend } from "react-icons/io5";
+import talking from "../../assets/talking.png"
 import useSendMessage from "../../hooks/useSendMessage";
 
 const MessageContainer = () => {
   const {selectedConversation, setSelectedConversation} = useConversation();
+  const {authUser} = useAuthContext();
   const [message, setMessage] = useState("");
   const {loading, sendMessage} = useSendMessage();
   useEffect(() => {
@@ -17,7 +20,13 @@ const MessageContainer = () => {
 
 
   if (!selectedConversation) {
-    return <div className="message-container">hello</div>;
+    return <div className="message-container">
+      <div className="flex justify-center items-center flex-col gap-4 mt-auto mb-auto">
+        <h1 className="text-4xl">Hi 👋 {authUser.fullName}...</h1>
+        <img src={talking} alt="" />
+        <div className="text-2xl">Select conversations from the chat and start talking!</div>
+      </div>
+    </div>;
   }
   const handleSubmit = async() => {
     if(!message) return;

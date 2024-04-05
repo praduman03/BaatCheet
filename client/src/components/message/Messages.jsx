@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import Message from "./Message";
 import  useGetMessages  from "../../hooks/useGetMessages"
+import chatImage from "../../assets/chat image.png";
 
 const Messages = () => {
   const {loading, messages} = useGetMessages();
@@ -12,14 +13,15 @@ const Messages = () => {
 		}, 100);
 	}, [messages]);
 
-  console.log("message", messages)
   return (
     <div className="overflow-auto">
       {!loading && messages.length > 0 && messages.map((message) => <div key={message._id} ref={lastMessageRef}>
 						<Message message={message} />
 					</div>
     )}
-    {loading && messages.length === 0 && <p className="text-center">Send a message to start the conversation</p>}
+    { messages.length === 0 && <div className="flex justify-center flex-col mt-20"><img className="size-30 mr-auto ml-auto" src={chatImage}/><p className="text-center text-2xl m-10">Send a message to start the conversation...</p>
+    
+    </div>}
     </div>
   );
 };

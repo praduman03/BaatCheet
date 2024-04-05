@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import useConversation from "../../zustand/useConversation";
 import "./sidebar.css";
-// import PropTypes from "prop-types";
 
 
 const Conversation = ({conversation, emoji}) => {
@@ -9,7 +8,7 @@ const Conversation = ({conversation, emoji}) => {
 
   const isSelected = selectedConversation?._id === conversation._id;
   return (
-    <div onClick={() => setSelectedConversation(conversation)} className={`flex justify-between items-center w-11/12 ${isSelected? "bg-sky-500": ""}`}>
+    <div onClick={() => setSelectedConversation(conversation)} className={`flex justify-between rounded-md items-center w-full pr-10 ${isSelected? "bg-[#724ff9] text-white": ""}`}>
       <div className="flex items-center">
         <img
           className="avatar"
