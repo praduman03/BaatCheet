@@ -28,6 +28,10 @@ server.listen(PORT, () => {
 });
 
 // Routes Middleware
+app.get("/jwt", (req, res) => {
+  console.log(req)
+  return res.status(201).json({message: "jwt"})
+})
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 app.use("/api/user", userRoutes);
