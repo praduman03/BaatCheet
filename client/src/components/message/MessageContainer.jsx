@@ -20,13 +20,13 @@ const MessageContainer = () => {
 
 
   if (!selectedConversation) {
-    return <div className="message-container">
+    return ( loading? <span className="loading loading-spinner h-full"></span>: <div className="message-container">
       <div className="flex justify-center items-center flex-col gap-4 mt-auto mb-auto">
         <h1 className="text-4xl">Hi 👋 {authUser.fullName}...</h1>
         <img src={talking} alt="" />
         <div className="text-2xl">Select conversations from the chat and start talking!</div>
       </div>
-    </div>;
+    </div>)
   }
   const handleSubmit = async() => {
     if(!message) return;

@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useAuthContext } from "../../context/AuthContext";
 import { formatTime } from "../../utils/formatTime";
-// import useConversation from "../../zustand/useConversation";
 
 const Message = ({message}) => {
   const {authUser} = useAuthContext();
-  // const {selectedConversation} = useConversation();
   const fromMe = message.senderId === authUser._id;
   const chatClassName = fromMe? "chat-end" : "chat-start";
   const bubbleBgColor = fromMe? "#724ff9" : "";
