@@ -10,7 +10,7 @@ const useGetMessages = () => {
         const getMessages = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`${import.meta.env.VITE_APP_SERVER_API}` + `/api/message/${selectedConversation._id}`,{
+                const res = await fetch( `/api/message/${selectedConversation._id}`,{
                     method:"POST"
                 });
                 const data = await res.json();
