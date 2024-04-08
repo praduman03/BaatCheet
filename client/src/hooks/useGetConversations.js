@@ -9,14 +9,16 @@ const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true);
             try {
-                const res = await fetch("/api/user/");
+                const res = await fetch(`${import.meta.env.VITE_APP_SERVER_API}` + "/api/user/");
                 const data = await res.json();
+                console.log(data)
                 if(!res.ok){
                     toast.error(data.message);
                 }
                 setConversations(data);
             } catch (error) {
                 toast.error(error.message);
+                console.log(error.message)
             } finally {
                 setLoading(false)
             }

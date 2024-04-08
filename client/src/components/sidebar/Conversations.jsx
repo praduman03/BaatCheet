@@ -7,11 +7,11 @@ const Conversations = () => {
   return (
     <div className="w-full overflow-auto">
       {/* {loading? <span className="loading loading-spinner h-full"></span>: null} */}
-      {conversations && conversations.map((conversation) => 
+      { conversations ? conversations.map((conversation) => 
         
         <Conversation key={conversation._id} conversation={conversation} emoji={getRandomEmoji()}/>
         
-      )}
+      ): <p>no conversation</p>}
     </div>
   );
 };

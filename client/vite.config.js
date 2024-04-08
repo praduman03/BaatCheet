@@ -6,9 +6,16 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:8000",
+    //   }
+    // }
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target: "https://baatcheet-server.onrender.com",
+        changeOrigin: true,
+        secure: false
       }
     }
   }
