@@ -28,7 +28,7 @@ const Login = () => {
           <h2>Welcome back</h2>
           <input type="text" placeholder="username or email" name="username" value={input.username} onChange={handleInput} />
           <input type="password" placeholder="password" name="password" value={input.password} onChange={handleInput} />
-          <button onClick={handleSubmit}>Login</button>
+          {loading? <button><span className="loading loading-spinner h-full"></span></button> :<button onClick={handleSubmit}>Login</button>}
           <p>
             {"Don't"} have an account? &nbsp;
             <Link className="link" to={"/signup"}>

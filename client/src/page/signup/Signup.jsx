@@ -53,7 +53,7 @@ const Signup = () => {
             </div>
           </div>
 
-          <button onClick={handleSubmit} onKeyDown={handleKeyDown}>Create Account</button>
+          {loading? <button><span className="loading loading-spinner h-full"></span></button> :<button onClick={handleSubmit} onKeyDown={handleKeyDown}>Create Account</button>}
           <p>
             Have an account? &nbsp;
             <Link className="link" to={"/login"}>
