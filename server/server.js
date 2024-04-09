@@ -11,7 +11,7 @@ import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
-// const app = express();
+// const app = express();//* already imported from socket.js
 app.use(cookieParser());
 app.use(cors());
 

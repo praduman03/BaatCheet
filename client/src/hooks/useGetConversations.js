@@ -11,7 +11,6 @@ const useGetConversations = () => {
       try {
         const res = await fetch("/api/user/");
         const data = await res.json();
-        console.log(data);
         if (!res.ok) {
           toast.error(data.message);
         }

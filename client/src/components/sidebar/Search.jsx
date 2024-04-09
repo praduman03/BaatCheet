@@ -8,12 +8,12 @@ import useGetConversations from "../../hooks/useGetConversations";
 const Search = () => {
   const [search, setSearch] = useState("");
   const { setSelectedConversation } = useConversation();
-  const conversations = useGetConversations();
+  const {conversations, loading} = useGetConversations();
   const handleSubmit = () => {
     if (!search) {
       return;
     }
-    const conversation = conversations.conversations.find((c) =>
+    const conversation = conversations.find((c) =>
       c.fullName.toLowerCase().includes(search.toLowerCase()),
     );
 
@@ -34,7 +34,7 @@ const Search = () => {
         }}
       />
       <button className="pr-6" onClick={handleSubmit}>
-        <FaSearch color="#724ff9" size={20} />
+        {loading? <span className="loading loading-spinner"></span> :<FaSearch color="#724ff9" size={20} />}
       </button>
     </div>
   );
