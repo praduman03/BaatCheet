@@ -2,11 +2,11 @@
 import { useAuthContext } from "../../context/AuthContext";
 import { formatTime } from "../../utils/formatTime";
 
-const Message = ({message}) => {
-  const {authUser} = useAuthContext();
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
   const fromMe = message.senderId === authUser._id;
-  const chatClassName = fromMe? "chat-end" : "chat-start";
-  const bubbleBgColor = fromMe? "#724ff9" : "";
+  const chatClassName = fromMe ? "chat-end" : "chat-start";
+  const bubbleBgColor = fromMe ? "#724ff9" : "";
   const shakeClass = "animate-shake";
 
   return (

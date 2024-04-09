@@ -11,13 +11,14 @@ export const signup = async (req, res) => {
       User.findOne({ username }),
       User.findOne({ email }),
     ]);
-    
+
     if (existingUser) {
       return res.status(400).json({ message: "Username is already taken" });
     } else if (isEmailTaken) {
-      return res.status(400).json({ message: "Email address is already in use" });
+      return res
+        .status(400)
+        .json({ message: "Email address is already in use" });
     }
-    
 
     //Hash Password here
     const salt = await bcrypt.genSalt(10);
@@ -34,7 +35,7 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword,
       gender,
-      profileImage
+      profileImage,
     });
     if (newUser) {
       //generate JWT token
@@ -60,7 +61,7 @@ export const login = async (req, res) => {
     //username can be username or email
 
     const user = await User.findOne({
-      $or: [{ username }, { email: username }]
+      $or: [{ username }, { email: username }],
     });
     if (!user) {
       return res

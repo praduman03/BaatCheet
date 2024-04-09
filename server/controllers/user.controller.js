@@ -6,7 +6,7 @@ export const getUsersForSidebar = async (req, res) => {
 
     //* fetching all users data that is not equat to the logged in user
     const allUsers = await User.find({ _id: { $ne: loggedInUserId } }).select(
-      "-password"
+      "-password",
     );
 
     return res.status(201).json(allUsers);

@@ -7,7 +7,7 @@ import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import cors from "cors";
 import ConnectToMongoDB from "./db/connectToMongoDB.js";
-import  {app, server} from "./socket/socket.js";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
@@ -15,10 +15,10 @@ dotenv.config();
 app.use(cookieParser());
 app.use(cors());
 
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
   console.log(req.path, req.method, req.ip, req.body);
   next();
-})
+});
 app.use(express.json());
 
 const PORT = process.env.SERVER_PORT || 8000;
