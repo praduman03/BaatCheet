@@ -9,7 +9,6 @@ const Search = () => {
   const [search, setSearch] = useState("");
   const { setSelectedConversation } = useConversation();
   const conversations = useGetConversations();
-  console.log(conversations);
   const handleSubmit = () => {
     if (!search) {
       return;

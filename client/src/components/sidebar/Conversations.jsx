@@ -10,11 +10,12 @@ const Conversations = () => {
     <div className="w-full overflow-auto">
       {conversations &&
         conversations.map((conversation) => (
+          <div key={conversation._id}>
           <Conversation
-            key={conversation._id}
             conversation={conversation}
             emoji={getRandomEmoji()}
           />
+          </div>
         ))}
     </div>
   );
