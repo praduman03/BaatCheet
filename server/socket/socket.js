@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:5173", "https://baatcheet-7t20.onrender.com/login"],
+    origin: ["http://localhost:3000", "http://localhost:5173", "https://baatcheet-7t20.onrender.com/login", "https://idyllic-moxie-8a3164.netlify.app"],
     methods: ["GET", "POST"],
   },
 });
