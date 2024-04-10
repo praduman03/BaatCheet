@@ -37,9 +37,10 @@ export const signup = async (req, res) => {
       gender,
       profileImage,
     });
+    let token;
     if (newUser) {
       //generate JWT token
-      generateTokenandSetCookie(newUser._id, res);
+      token = generateTokenandSetCookie(newUser._id, res);
     }
 
     await newUser.save();
@@ -48,7 +49,7 @@ export const signup = async (req, res) => {
     }
     return res
       .status(201)
-      .json({ message: "User created successfully", newUser });
+      .json({ message: "User created successfully", newUser, token });
   } catch (error) {
     console.log("Error in SignUp Controller: ", error);
     res.status(500).json({ message: "Something went wrong" });
@@ -73,11 +74,11 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-
+    let token;
     //generate JWT token
-    generateTokenandSetCookie(user._id, res);
-
-    res.status(200).json({ message: "User logged in successfully", user });
+    token = generateTokenandSetCookie(user._id, res);
+    console.log("Token: ", token);
+    res.status(200).json({ message: "User logged in successfully", user, token });
   } catch (error) {
     console.log("Error in Login Controller: ", error);
     res.status(500).json({ message: "Something went wrong" });
@@ -86,7 +87,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    res.clearCookie("jwt");
+    // res.clearCookie("jwt");
     res.status(200).json({ message: "User logged out successfully" });
   } catch (error) {
     console.log("Error in Logout Controller: ", error);
