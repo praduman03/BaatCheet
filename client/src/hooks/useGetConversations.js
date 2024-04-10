@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
@@ -12,11 +12,12 @@ const useGetConversations = () => {
         const res = await fetch("/api/user/");
         const data = await res.json();
         if (!res.ok) {
-          toast.error(data.message);
+          // toast.error(data.message);
+          console.log(data.message);
         }
         setConversations(data);
       } catch (error) {
-        toast.error(error.message);
+        // toast.error(error.message);
         console.log(error.message);
       } finally {
         setLoading(false);
